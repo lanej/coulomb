@@ -1,4 +1,4 @@
-package coulumb_test
+package coulomb_test
 
 import (
 	. "github.com/onsi/ginkgo"

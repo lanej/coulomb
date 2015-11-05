@@ -1,4 +1,4 @@
-package coulumb_test
+package coulomb_test
 
 import (
 	. "github.com/lanej/coulomb"
@@ -33,6 +33,7 @@ var _ = Describe("Coulomb", func() {
 			Expect(response.Success()).To(BeTrue())
 			Expect(response.Env.Method).To(Equal("GET"))
 			Expect(response.Env.URL.Path).To(Equal("/get"))
+			Expect(response.Body()).To(Equal(""))
 		})
 	})
 })
