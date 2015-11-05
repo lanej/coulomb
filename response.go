@@ -14,3 +14,8 @@ func (r Response) Success() bool {
 func (r Response) Body() string {
 	return r.Env.ResponseBody
 }
+
+// Headers returns the response headers body.
+func (r Response) Headers() map[string]string {
+	return r.Env.ResponseHeaders
+}
