@@ -14,19 +14,21 @@ var _ = Describe("Coulomb", func() {
 	)
 
 	BeforeEach(func() {
-		adapter = RackAdapter{}
+		adapter = RackAdapter{
+			Application: func(env map[string]interface{}) (int, map[string]string, string, error) {
+				return 200, map[string]string{}, "", nil
+			},
+		}
 
 		client = Client{
-			Url:     "http://example.org",
+			URL:     "http://example.org",
 			Adapter: adapter,
 		}
 	})
 
-	Describe("Categorizing book length", func() {
-		Context("With more than 300 pages", func() {
-			It("should be a novel", func() {
-				Expect(longBook.CategoryByLength()).To(Equal("NOVEL"))
-			})
+	Describe("RackAdapter", func() {
+		It("servers a GET request", func() {
+			Expect(client.Get("/").Success()).To(BeTrue())
 		})
 	})
 })
