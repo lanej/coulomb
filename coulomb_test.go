@@ -28,7 +28,11 @@ var _ = Describe("Coulomb", func() {
 
 	Describe("RackAdapter", func() {
 		It("servers a GET request", func() {
-			Expect(client.Get("/").Success()).To(BeTrue())
+			response := client.Get("/get")
+
+			Expect(response.Success()).To(BeTrue())
+			Expect(response.Env.Method).To(Equal("GET"))
+			Expect(response.Env.URL.Path).To(Equal("/get"))
 		})
 	})
 })

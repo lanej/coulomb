@@ -39,9 +39,18 @@ type Client struct {
 
 // Get performs a GET request
 func (client *Client) Get(path string) Response {
+	return client.processRequest(path, "GET")
+}
+
+// Put performs a PUT request
+func (client *Client) Put(path string) Response {
+	return client.processRequest(path, "PUT")
+}
+
+func (client *Client) processRequest(path string, method string) Response {
 	url, _ := url.Parse(path)
 
-	env := client.Adapter.Call(Env{URL: *url, Method: "GET"})
+	env := client.Adapter.Call(Env{URL: *url, Method: method})
 
 	return Response{Env: env}
 }
